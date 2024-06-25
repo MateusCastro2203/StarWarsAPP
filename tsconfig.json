@@ -1,43 +1,42 @@
 {
   "extends": "@react-native/typescript-config/tsconfig.json",
   "compilerOptions": {
-    "target": "esnext",
-    "module": "es2015", // or "preserve"
     "jsx": "react-native",
     "strict": true,
     "esModuleInterop": true,
     "skipLibCheck": true,
     "resolveJsonModule": true,
     "allowSyntheticDefaultImports": true,
-    "baseUrl": "./",
+    "baseUrl": "./src/",
+    "moduleResolution": "node",
     "paths": {
       "@assets/*": [
         "assets/*"
       ],
       "@components/*": [
-        "src/components/*"
+        "components/*"
       ],
       "@config/*": [
-        "src/config/*"
-      ],
-      "@constants/*": [
-        "src/constants/*"
+        "config/*"
       ],
       "@hooks/*": [
-        "src/hooks/*"
+        "hooks/*"
       ],
       "@navigation/*": [
-        "src/navigation/*"
+        "navigation/*"
       ],
       "@screens/*": [
-        "src/screens/*"
+        "screens/*"
       ],
       "@services/*": [
-        "src/services/*"
+        "services/*"
       ],
       "@utils/*": [
-        "src/utils/*"
-      ]
+        "utils/*"
+      ],
+      "@types/*": [
+        "types/*"
+      ],
     }
   }
 }
