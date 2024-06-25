@@ -9,9 +9,16 @@ import FavoriteCharactersScreen from '../screens/favoriteCharacters/favoriteChar
 const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
 
+function HomeStack() {
+  return (
+    <Stack.Navigator screenOptions={{headerShown: false}}>
+      <Stack.Screen name="Home" component={HomeScreen} />
+      <Stack.Screen name="Details" component={DetailsScreen} />
+    </Stack.Navigator>
+  );
+}
 
-
-function AppTabs() {
+export default function AppTabs() {
   return (
     <Tab.Navigator
       screenOptions={{
@@ -21,17 +28,8 @@ function AppTabs() {
         tabBarStyle: {backgroundColor: '#272B30'},
         tabBarIcon: () => null,
       }}>
-      <Tab.Screen name="Home" component={HomeScreen} />
+      <Tab.Screen name="HomeStack" component={HomeStack} />
       <Tab.Screen name="Favorite" component={FavoriteCharactersScreen} />
     </Tab.Navigator>
-  );
-}
-
-export default  function HomeStack() {
-  return (
-    <Stack.Navigator screenOptions={{headerShown: false}}>
-      <Stack.Screen name="Home" component={AppTabs} />
-      <Stack.Screen name="Details" component={DetailsScreen} />
-    </Stack.Navigator>
   );
 }

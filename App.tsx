@@ -11,14 +11,14 @@ import {
   StyleSheet,
 } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
-import HomeStack from './src/navigation';
+import AppTabs from './src/navigation';
 
 function App(): React.JSX.Element {
 
   return (
     <NavigationContainer >
         <SafeAreaView style={styles.fullScreen}>
-        <HomeStack />
+        <AppTabs />
         </SafeAreaView>
     </NavigationContainer>
   );

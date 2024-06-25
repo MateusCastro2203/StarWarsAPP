@@ -41,6 +41,7 @@ const DetailsScreen: React.FC = () => {
       navigation.navigate('Home');
     } else {
       addFavoriteCharacter(character);
+      navigation.navigate('Home');
     }
   };
 
