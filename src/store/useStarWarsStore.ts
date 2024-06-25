@@ -2,18 +2,37 @@ import {create} from 'zustand';
 import {Character, Film} from '../types/index';
 
 interface StarWarsCharacter {
-  character: Character[];
+  characters: Character[];
+  character: Character;
   favoriteCharacter: Character[];
   addFavoriteCharacter: (character: Character) => void;
   removeFavoriteCharacter: (character: Character) => void;
-  fetchCharacter: () => Promise<void>;
-  fetchCharacterById: (id: number) => Promise<void>;
+  fetchCharacter: (id:number) => Promise<void>;
+  fetchCharacterById: (url: string) => Promise<void>;
 //   films: Film;
 //   fetchFilmsByCharacter: (id: number) => Promise<void>;
 }
 
 export const useStarWarsStore = create<StarWarsCharacter>(set => ({
-  character: [],
+  characters: [],
+  character: {
+      name: '',
+      height: '',
+      mass: '',
+      hair_color: '',
+      skin_color: '',
+      eye_color: '',
+      birth_year: '',
+      gender: '',
+      homeworld: '',
+      films: [],
+      species: [],
+      vehicles: [],
+      starships: [],
+      created: '',
+      edited: '',
+      url: ''
+  },
   favoriteCharacter: [],
   addFavoriteCharacter: character =>
     set(state => ({
@@ -25,15 +44,15 @@ export const useStarWarsStore = create<StarWarsCharacter>(set => ({
         fav => fav.name !== character.name,
       ),
     })),
-  fetchCharacter: async () => {
-    const response = await fetch('https://swapi.dev/api/people/');
+  fetchCharacter: async id => {
+    const response = await fetch(`https://swapi.dev/api/people/?page=${id}`);
     const data = await response.json();
-    set({character: data.results});
+    set(state => ({characters: [...state.characters, ...data.results]}));
   },
-  fetchCharacterById: async id => {
-    const response = await fetch(`https://swapi.dev/api/people/${id}`);
+  fetchCharacterById: async url => {
+    const response = await fetch(url);
     const data = await response.json();
-    set({character: [data]});
+    set({character: data});
   },
 //   films: [],
 //   fetchFilmsByCharacter: async id => {

@@ -9,26 +9,18 @@ import React from 'react';
 import {
   SafeAreaView,
   StyleSheet,
-  View,
-  useColorScheme,
 } from 'react-native';
-
-
-import HomeScreen from './src/screens/home/Home';
-import {SafeAreaProvider} from 'react-native-safe-area-context';
+import { NavigationContainer } from '@react-navigation/native';
+import HomeStack from './src/navigation';
 
 function App(): React.JSX.Element {
-  const isDarkMode = useColorScheme() === 'dark';
-
 
   return (
-    <SafeAreaProvider> 
-      <SafeAreaView style={styles.fullScreen}>
-        <View>
-          <HomeScreen />
-        </View>
-      </SafeAreaView>
-    </SafeAreaProvider>
+    <NavigationContainer >
+        <SafeAreaView style={styles.fullScreen}>
+        <HomeStack />
+        </SafeAreaView>
+    </NavigationContainer>
   );
 }
 
@@ -37,6 +29,7 @@ const styles = StyleSheet.create({
     flex: 1,
     width: '100%',
     height: '100%',
+    backgroundColor: '#272B30',
   },
 });
 
