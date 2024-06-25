@@ -7,7 +7,7 @@ interface StarWarsCharacter {
   favoriteCharacter: Character[];
   addFavoriteCharacter: (character: Character) => void;
   removeFavoriteCharacter: (character: Character) => void;
-  fetchCharacter: (id:number) => Promise<void>;
+  fetchCharacter: (id: number) => Promise<void>;
   fetchCharacterById: (url: string) => Promise<void>;
   films: Film[];
   fetchFilmsByCharacter: (url: string) => Promise<void>;
@@ -16,22 +16,22 @@ interface StarWarsCharacter {
 export const useStarWarsStore = create<StarWarsCharacter>(set => ({
   characters: [],
   character: {
-      name: '',
-      height: '',
-      mass: '',
-      hair_color: '',
-      skin_color: '',
-      eye_color: '',
-      birth_year: '',
-      gender: '',
-      homeworld: '',
-      films: [],
-      species: [],
-      vehicles: [],
-      starships: [],
-      created: '',
-      edited: '',
-      url: '',
+    name: '',
+    height: '',
+    mass: '',
+    hair_color: '',
+    skin_color: '',
+    eye_color: '',
+    birth_year: '',
+    gender: '',
+    homeworld: '',
+    films: [],
+    species: [],
+    vehicles: [],
+    starships: [],
+    created: '',
+    edited: '',
+    url: '',
   },
   favoriteCharacter: [],
   addFavoriteCharacter: character =>
@@ -54,7 +54,7 @@ export const useStarWarsStore = create<StarWarsCharacter>(set => ({
     const data = await response.json();
     set({character: data});
   },
-   films: [],
+  films: [],
   fetchFilmsByCharacter: async url => {
     const response = await fetch(url);
     const data = await response.json();
