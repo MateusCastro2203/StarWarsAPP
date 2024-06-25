@@ -10,7 +10,7 @@ interface StarWarsCharacter {
   fetchCharacter: (id:number) => Promise<void>;
   fetchCharacterById: (url: string) => Promise<void>;
   films: Film[];
- fetchFilmsByCharacter: (url: string) => Promise<void>;
+  fetchFilmsByCharacter: (url: string) => Promise<void>;
 }
 
 export const useStarWarsStore = create<StarWarsCharacter>(set => ({
@@ -31,7 +31,7 @@ export const useStarWarsStore = create<StarWarsCharacter>(set => ({
       starships: [],
       created: '',
       edited: '',
-      url: ''
+      url: '',
   },
   favoriteCharacter: [],
   addFavoriteCharacter: character =>

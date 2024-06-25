@@ -37,7 +37,7 @@ const HomeScreen = () => {
             onPress={() => handlePress(item.url)}
           />
         )}
-        keyExtractor={item => item.name.toString()}
+        keyExtractor={(_item, index) => index.toString()}
         onEndReached={handleLoadMore}
         onEndReachedThreshold={0.8}
       />

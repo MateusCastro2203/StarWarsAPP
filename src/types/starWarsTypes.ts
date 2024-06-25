@@ -15,6 +15,7 @@ export interface Character {
   created: string;
   edited: string;
   url: string;
+  favorite?: boolean;
 }
 
 export interface Film {

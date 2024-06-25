@@ -3,6 +3,8 @@ import {View, Text} from 'react-native';
 import {useStarWarsStore} from '../../store/useStarWarsStore.ts';
 import {styles} from './styles.ts';
 import {Film} from '../../types/starWarsTypes.ts';
+import Button from '../../components/button/Button.tsx';
+import {useNavigation} from '@react-navigation/native';
 
 const CharacterDetail = (label: string, value: string) => (
   <Text style={styles.description}>
@@ -11,8 +13,8 @@ const CharacterDetail = (label: string, value: string) => (
 );
 
 const FilmList = (films: Film[]) => (
-  <View>
-    <Text style={[styles.description, styles.descriptionBold]}>Films</Text>
+  <View style={styles.filmsContainer}>
+    <Text style={styles.filmsTitle}>Films</Text>
     {films.map(film => (
       <Text key={film.title} style={styles.description}>
         {film.title}
@@ -22,7 +24,25 @@ const FilmList = (films: Film[]) => (
 );
 
 const DetailsScreen: React.FC = () => {
-  const {character, films} = useStarWarsStore();
+  const {
+    character,
+    films,
+    addFavoriteCharacter,
+    favoriteCharacter,
+    removeFavoriteCharacter,
+  } = useStarWarsStore();
+
+  const isFavorite = favoriteCharacter.some(fav => fav.name === character.name);
+  const navigation = useNavigation();
+
+  const handlePress = () => {
+    if (isFavorite) {
+      removeFavoriteCharacter(character);
+      navigation.navigate('Home');
+    } else {
+      addFavoriteCharacter(character);
+    }
+  };
 
   return (
     <View style={styles.container}>
@@ -32,6 +52,13 @@ const DetailsScreen: React.FC = () => {
       {CharacterDetail('Hair Color', character.hair_color)}
       {CharacterDetail('Birth Year', character.birth_year)}
       {FilmList(films)}
+
+      <Button
+        isFavorite={isFavorite}
+        onPress={() => {
+          handlePress();
+        }}
+      />
     </View>
   );
 };
