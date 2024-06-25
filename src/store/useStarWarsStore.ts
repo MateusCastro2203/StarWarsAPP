@@ -9,8 +9,8 @@ interface StarWarsCharacter {
   removeFavoriteCharacter: (character: Character) => void;
   fetchCharacter: (id:number) => Promise<void>;
   fetchCharacterById: (url: string) => Promise<void>;
-//   films: Film;
-//   fetchFilmsByCharacter: (id: number) => Promise<void>;
+  films: Film[];
+ fetchFilmsByCharacter: (url: string) => Promise<void>;
 }
 
 export const useStarWarsStore = create<StarWarsCharacter>(set => ({
@@ -54,16 +54,16 @@ export const useStarWarsStore = create<StarWarsCharacter>(set => ({
     const data = await response.json();
     set({character: data});
   },
-//   films: [],
-//   fetchFilmsByCharacter: async id => {
-//     const response = await fetch(`https://swapi.dev/api/people/${id}`);
-//     const data = await response.json();
-//     const films = await Promise.all(
-//       data.films.map(async (film: string) => {
-//         const response = await fetch(film);
-//         return response.json();
-//       }),
-//     );
-//     set({films});
-//   },
+   films: [],
+  fetchFilmsByCharacter: async url => {
+    const response = await fetch(url);
+    const data = await response.json();
+    const films = await Promise.all(
+      data.films.map(async (film: string) => {
+        const response = await fetch(film);
+        return response.json();
+      }),
+    );
+    set({films});
+  },
 }));

@@ -6,7 +6,8 @@ import {styles} from './styles.ts';
 import {useNavigation} from '@react-navigation/native';
 
 const HomeScreen = () => {
-  const {fetchCharacter, fetchCharacterById} = useStarWarsStore();
+  const {fetchCharacter, fetchCharacterById, fetchFilmsByCharacter} =
+    useStarWarsStore();
   const [page, setPage] = React.useState(1);
 
   useEffect(() => {
@@ -22,6 +23,7 @@ const HomeScreen = () => {
   const handlePress = (url: string) => {
     navigation.navigate('Details');
     fetchCharacterById(url);
+    fetchFilmsByCharacter(url);
   };
 
   return (
